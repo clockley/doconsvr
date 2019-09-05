@@ -1,6 +1,7 @@
 package doconsvr;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.apache.pdfbox.io.RandomAccessBuffer;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -18,7 +19,6 @@ class PDFtoText {
             PDDocument pdDocument = new PDDocument(pdfParser.getDocument());
             PDFTextStripper pdfTextStripper = new PDFLayoutTextStripper();
             string = pdfTextStripper.getText(pdDocument);
-            pdDocument.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
