@@ -2,6 +2,7 @@ package doconsvr;
 import static spark.Spark.post;
 
 import javax.servlet.MultipartConfigElement;
+import javax.servlet.annotation.*;
 
 import org.apache.pdfbox.io.RandomAccessBuffer;
 
@@ -19,4 +20,13 @@ public class Main implements SparkApplication {
 	public static void main(String[] args) {
 		new Main().init();
 	}
-}
+	
+	 @WebFilter(
+	          filterName = "SparkInitFilter", urlPatterns = {"/*"}, 
+	          initParams = {
+	             @WebInitParam(name = "applicationClass", value = "HelloWorld")
+	      })
+	  public static class SparkInitFilter extends spark.servlet.SparkFilter {
+		 
+	 }
+	}
